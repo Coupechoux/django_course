@@ -6,6 +6,8 @@ class Person(models.Model):
 	mail = models.CharField(max_length = 50, blank=True, null=True)
 	phone_number = models.CharField(max_length = 10, blank=True, null=True)
 	
+	read_books = models.ManyToManyField('Book', related_name = 'readers')
+	
 	def __str__(self):
 		return 'Personne : '+self.name
 
@@ -22,7 +24,8 @@ class Author(Person):
 			id = Author.objects.get(name='Inconnu').pk
 		except Author.DoesNotExist as e:
 			# Dans ce cas, je le crée
-			unknown = Author(name='Inconnu').save()
+			unknown = Author(name='Inconnu')
+			unknown.save()
 			id = unknown.pk
 		# except Author.MultipleObjectsReturned as e: <- je ne gère pas ce cas là, donc la fonction va transmettre l'erreur si elle survient
 		return id
@@ -41,6 +44,8 @@ class Book(models.Model):
 	
 	author = models.ForeignKey(Author, on_delete=models.CASCADE, default=Author.unknown_author, related_name='get_all_books')
 	
+	lent_to = models.ForeignKey(Person, blank=True, null=True, on_delete=models.SET_NULL)
+	
 	# En exercice :
 	def get_shelf_info(self):
 		"""
@@ -52,4 +57,11 @@ class Book(models.Model):
 	def __str__(self):
 		return self.title
 
-
+class AuthorsGroup(models.Model):
+	name = models.CharField(max_length = 50)
+	creation_date = models.IntegerField()
+	still_alive = models.BooleanField(default = True)
+	description = models.TextField()
+	
+	authors = models.ManyToManyField(Author, related_name='groups')
+	

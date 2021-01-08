@@ -1,0 +1,7 @@
+*pycache*
+migrations
+__init__.py
+tests.py
+apps.py
+db.sqlite3
+manage.py
