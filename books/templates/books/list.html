@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>La bibliothèque de Pierre</title>
+</head>
+<body>
+
+<p>Voici la liste des livres de la bibliothèque.</p>
+
+
+{{ book.title }} ({{ book.shelf }})
+
+
+<a href="{% url 'books_index' %}">Retour à l'accueil</a>
+
+</body>
+</html> 
