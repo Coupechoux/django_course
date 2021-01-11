@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>La bibliothèque de Pierre</title>
-</head>
-<body>
+{% extends 'books/main.html' %}
 
+{% block content %}
 <h2>Le livre {{ book.title }}</h2>
 
 <p>Ce livre se trouve dans la rangée numéro {{ row }}, étagère numéro {{ shelf }}.</p>
@@ -18,8 +14,4 @@
 {% if author_mail %}<li>{{ author_mail }}</li>{% endif %}
 </ul>
 {% endif %}
-
-<a href="{% url 'books_index' %}">Retour à l'accueil</a>
-
-</body>
-</html>
+{% endblock %}

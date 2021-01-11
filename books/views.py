@@ -31,7 +31,7 @@ def detail_view(request, book_id):
 				'row': shelf_info[0],
 				'shelf': shelf_info[1],
 		}
-	
+	# context = {'book':book}
 	
 	return render(request, 'books/detail.html', context)
 	

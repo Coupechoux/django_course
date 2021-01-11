@@ -1,0 +1,11 @@
+{# Ce fichier me servira de base, de patron, pour les autres templates (fichiers html). On précise dedans une base qui est commune à toutes les pages. En l'occurence, il y aura toute la partie "head" qui restera identique, et nous aurons deux blocs dans le body. Le premier bloc sera le contenu de la page en question ; ici, je parle du patron commun à toutes les autres pages, donc je ne sais pas ce qu'il y aura dedans (ça dépend de la page en question). Donc je le laisse vide, et je laisse les pages le remplir. Le deuxième bloc sera le lien de retour à l'accueil, qui sera présent sur presque toutes les pages. Si je veux le laisser tel quel, j'ai juste à ne pas modifier ce bloc. Si je veux le remplacer par autre chose, je le modifie. #}
+<!DOCTYPE html>
+<html>
+<head>
+<title>La bibliothèque de Pierre</title>
+</head>
+<body>
+{% block content %}{% endblock %}
+{% block return_to_index %}<a href="{% url 'books_index' %}">Retour à l'accueil</a>{% endblock %}
+</body>
+</html> 
