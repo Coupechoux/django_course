@@ -13,6 +13,7 @@ class Person(models.Model):
 
 class Author(Person):
 	
+	first_book = models.ForeignKey('Book', blank=True, null=True, on_delete=models.SET_NULL, related_name='first_book_of')
 	
 	def unknown_author():
 		"""Returns the unknown default author, creating it if necessary"""
@@ -46,13 +47,15 @@ class Book(models.Model):
 	
 	lent_to = models.ForeignKey(Person, blank=True, null=True, on_delete=models.SET_NULL)
 	
-	# En exercice :
 	def get_shelf_info(self):
 		"""
 		Returns a tuple containing the row number and the shelf number.
 		For example, if b.shelf equals 'E0415', print(b.get_shelf_info()) will print ('04', '15').
 		"""
-		pass
+		if self.shelf is not None:
+			return (self.shelf[1:3], self.shelf[3:])
+		else:
+			return ('--','--')
 	
 	def __str__(self):
 		return self.title

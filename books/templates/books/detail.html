@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>La bibliothèque de Pierre</title>
+</head>
+<body>
+
+<h2>Le livre {{ book.title }}</h2>
+
+<p>Ce livre se trouve dans la rangée numéro {{ row }}, étagère numéro {{ shelf }}.</p>
+
+{# Si j'ai le nom de l'auteur, c'est que j'ai des informations sur lui/elle. Dans ce cas, j'affiche ces informations. Sinon, je n'affiche rien #}
+{% if author_name %}
+<p>Quelques détails sur l'auteur : {{ author_name }}.{% if first_book %} Son premier livre est {{ first_book.title }}.{% endif %}</p>
+<p>Pour contacter l'auteur :<p>
+<ul>
+{% if author_phone %}<li>{{ author_phone }}</li>{% endif %}
+{% if author_mail %}<li>{{ author_mail }}</li>{% endif %}
+</ul>
+{% endif %}
+
+<a href="{% url 'books_index' %}">Retour à l'accueil</a>
+
+</body>
+</html>

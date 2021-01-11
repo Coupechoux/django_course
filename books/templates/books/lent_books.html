@@ -5,10 +5,11 @@
 </head>
 <body>
 
-<p>Voici la liste des livres de la bibliothèque.</p>
+<p>Voici la liste des livres empruntés.</p>
 {# On va créer une liste, et rajouter un élément dedans pour chaque livre. #}
 <ul>
-{% for book in books %}<li><a href="{% url 'books_detail' book_id=book.id %}">{{ book.title }}</a></li>{% endfor %}
+{% for book in books %}<li><a href="{% url 'books_detail' book_id=book.id %}">{{ book.title }}</a></li>
+{% endfor %}
 </ul>
 
 <a href="{% url 'books_index' %}">Retour à l'accueil</a>
