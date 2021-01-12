@@ -1,0 +1,22 @@
+{% extends 'books/main.html' %}
+
+{% block content %}
+<!-- <form action=""> -->
+	<!-- <label for="name">Nom :</label><br> -->
+	<!-- <input type="text" id="name" name="name"><br> -->
+	<!-- <label for="mail">E-mail :</label><br> -->
+	<!-- <input type="text" id="mail" name="mail"><br> -->
+	<!-- <label for="phone">Téléphone :</label><br> -->
+	<!-- <input type="text" id="phone" name="phone"><br><br> -->
+	<!-- <input type="submit" value="Submit"> -->
+<!-- </form> -->
+
+<form action="" method="post">
+{% csrf_token %}
+{{ form.as_p }} {# form.as_table, form.as_ul #}
+<p><input type="submit" value="Envoyer"></p>
+</form>
+
+
+
+{% endblock %}

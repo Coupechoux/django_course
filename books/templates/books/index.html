@@ -1,6 +1,9 @@
 {# Je me sers du fichier books/main.html comme base pour ce fichier #}
 {% extends 'books/main.html' %}
 
+{# Activer le menu correspondant #}
+{% block nav_index %}class="active" {% endblock %}
+
 {# Ce que je précise par rapport à la base, c'est ce qu'il y a dans le bloc content #}
 {% block content %}
 <h2>Accueil</h2>

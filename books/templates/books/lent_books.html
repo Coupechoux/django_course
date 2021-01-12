@@ -1,4 +1,7 @@
 {% extends 'books/main.html' %}
+
+{% block nav_lent %}class="active" {% endblock %}
+
 {% block content %}
 <p>Voici la liste des livres empruntés.</p>
 {# On va créer une liste, et rajouter un élément dedans pour chaque livre. #}

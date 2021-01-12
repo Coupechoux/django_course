@@ -1,6 +1,8 @@
 {# Il faut se servir du fichier books/main.html comme base #}
 {% extends 'books/main.html' %}
 
+{% block nav_list %}class="active" {% endblock %}
+
 {% block content %}
 <p>Voici la liste des livres de la bibliothèque.</p>
 {# On va créer une liste, et rajouter un élément dedans pour chaque livre. #}
