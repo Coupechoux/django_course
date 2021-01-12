@@ -13,6 +13,7 @@
 	<a {% block nav_index %}{% endblock %}href="{% url 'books_index' %}">Accueil</a>
 	<a {% block nav_list %}{% endblock %}href="{% url 'books_list' %}">Liste</a>
 	<a {% block nav_lent %}{% endblock %}href="{% url 'lent_books' %}">Empruntés</a>
+	{% if request.user.is_staff %}<a href="/admin">Admin</a>{% endif %}
 </div> 
 
 {% block content %}{% endblock %}

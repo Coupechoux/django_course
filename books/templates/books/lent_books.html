@@ -1,12 +1,5 @@
-{% extends 'books/main.html' %}
+{% extends 'books/generic_list.html' %}
 
 {% block nav_lent %}class="active" {% endblock %}
 
-{% block content %}
-<p>Voici la liste des livres empruntés.</p>
-{# On va créer une liste, et rajouter un élément dedans pour chaque livre. #}
-<ul>
-{% for book in books %}<li><a href="{% url 'books_detail' book_id=book.id %}">{{ book.title }}</a></li>
-{% endfor %}
-</ul>
-{% endblock %}
+{% block description %}Voici la liste des livres empruntés.{% endblock %}

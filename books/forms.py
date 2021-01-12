@@ -1,5 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from .models import Author
+from django.core.validators import MinLengthValidator
 
 def phone_validator(s):
 	# if len(s) != 10 or not s.isdigit() or s[0] != '0':
@@ -21,3 +23,13 @@ class PersonForm(forms.Form):
 	# - Il doit être exactement de taille 10
 	# - Il ne doit contenir que des chiffres
 	# - Il doit commencer par '0'
+	
+def shelf_validator(s):
+	if len(s) != 5 or s[0] != 'E' or not s[1:].isdigit():
+		raise ValidationError("Mauvais format d'étagère")
+	
+class BookForm(forms.Form):
+	title = forms.CharField(max_length=200, label='Titre ')
+	shelf = forms.CharField(max_length=5, label='Code étagère ', validators=[shelf_validator])
+	author1 = forms.ModelChoiceField(queryset=Author.objects.exclude(name='Inconnu'), required=False, label="Auteur 1 ")
+	author2 = forms.CharField(max_length=30, label="Auteur 2 ", validators=[MinLengthValidator(2)])

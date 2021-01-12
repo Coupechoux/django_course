@@ -1,0 +1,15 @@
+{% extends 'books/main.html' %}
+
+{% block content %}
+
+<h2>Ajouter un livre à la bibliothèque</h2>
+
+<form action="" method="post">
+<table>
+{% csrf_token %}
+{{ form.as_table }}
+</table>
+<p><input type="submit" value="Envoyer"></p>
+</form>
+
+{% endblock %}

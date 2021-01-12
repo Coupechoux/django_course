@@ -2,12 +2,16 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import Book, Author, Person
-from .forms import PersonForm
+from .forms import PersonForm, BookForm
+
+# from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
 	print(dir(request))
 	print(request.get_full_path())
+	print(dir(request.user))
+	print(request.user.is_staff)
 	return render(request,'books/index.html')
 	
 def list_view(request):
@@ -53,6 +57,7 @@ def lent_view(request):
 	
 	return render(request, 'books/lent_books.html', {'books':books})
 	
+# @login_required
 def add_person(request):
 	# Si le client a envoyé des données
 	if request.method == 'POST':
@@ -91,3 +96,30 @@ def add_person(request):
 	# Ici, j'ai un objet form qui contient les données/erreurs s'il y en a, ou qui est vierge sinon.
 
 	return render(request, 'books/add_person.html', {'form':form})
+	
+def add_book(request):
+	if request.method == 'POST':
+		form = BookForm(request.POST)
+		if form.is_valid():
+			data = form.cleaned_data
+			
+			# Traiter les données
+			
+			# Méthode en utilisant author1
+			# if data['author'] is None:
+				# data['author'] = Author.objects.get(name='Inconnu')
+			# b = Book(title=data['title'], shelf=data['shelf'], author=data['author'])
+			# b.save()
+			
+			# Méthode en utilisant author2
+			author, created = Author.objects.get_or_create(name=data['author2'])
+			b = Book(title=data['title'], shelf=data['shelf'], author=author)
+			b.save()
+			
+			return HttpResponseRedirect(reverse('add_book'))
+	else:
+		form = BookForm()
+		
+	context = {'form':form}
+	return render(request, 'books/add_book.html', context)
+	

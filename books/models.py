@@ -36,7 +36,7 @@ class Author(Person):
 			
 		
 	def __str__(self):
-		return 'Auteur : '+self.name
+		return self.name
 
 
 class Book(models.Model):

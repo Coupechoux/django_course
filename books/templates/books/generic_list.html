@@ -1,0 +1,10 @@
+{% extends 'books/main.html' %}
+
+{% block content %}
+<p>{% block description %}{% endblock %}</p>
+{# On va créer une liste, et rajouter un élément dedans pour chaque livre. #}
+<ul>
+{% for book in books %}<li><a href="{% url 'books_detail' book_id=book.id %}">{{ book.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
